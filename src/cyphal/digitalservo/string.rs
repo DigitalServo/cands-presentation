@@ -1,8 +1,5 @@
-use super::traits::{DigitalServoDataType, DigitalServoPrimitiveData, IntoDigitalServoDataType};
 
 const STRQTY_SIZE: usize = 1;
-// const KEY_MAXLEN: usize = 32;
-// const KEY_MEM_LEN: usize = KEYLEN_SIZE + KEY_MAXLEN;
 
 #[derive(Debug)]
 pub struct Str {
