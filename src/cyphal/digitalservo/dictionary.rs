@@ -4,7 +4,7 @@ const KEYLEN_SIZE: usize = 1;
 const KEY_MAXLEN: usize = 32;
 const KEY_MEM_LEN: usize = KEYLEN_SIZE + KEY_MAXLEN;
 
-#[derive(Debug)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct Dict {
     pub key: String,
     pub value: Vec<DigitalServoPrimitiveData>,
