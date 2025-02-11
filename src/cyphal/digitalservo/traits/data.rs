@@ -14,6 +14,34 @@ pub enum DigitalServoPrimitiveData {
     F64(f64),
 }
 
+
+impl DigitalServoPrimitiveData {
+    pub fn vec_from_buffer<T: Into<DigitalServoPrimitiveData> + Copy>(buffer: &[u8], len: usize) -> Vec<Self>{
+        unsafe {
+            std::slice::from_raw_parts(buffer.as_ptr() as *const T, len)
+                .iter()
+                .map(|&x| x.into())
+                .collect()
+        }
+    }
+
+    pub fn get_char_len(&self) -> usize {
+        match self{
+            Self::String(x) => x.len(),
+            _ => 0
+        }
+    }
+
+    pub fn get_char_buffer(&self) -> Vec<u8> {
+        match self{
+            Self::String(x) => x.as_bytes().to_vec(),
+            _ => vec![]
+        }
+    }
+
+}
+
+
 impl From<String> for DigitalServoPrimitiveData {
     fn from(val: String) -> Self {
         Self::String(val)
@@ -86,28 +114,132 @@ impl From<f64> for DigitalServoPrimitiveData {
     }
 }
 
-impl DigitalServoPrimitiveData {
-    pub fn vec_from_buffer<T: Into<DigitalServoPrimitiveData> + Copy>(buffer: &[u8], len: usize) -> Vec<Self>{
-        unsafe {
-            std::slice::from_raw_parts(buffer.as_ptr() as *const T, len)
-                .iter()
-                .map(|&x| x.into())
-                .collect()
+
+
+
+
+
+
+
+
+
+
+impl TryFrom<DigitalServoPrimitiveData> for String {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::String(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
         }
     }
+}
 
-    pub fn get_char_len(&self) -> usize {
-        match self{
-            Self::String(x) => x.len(),
-            _ => 0
+impl TryFrom<DigitalServoPrimitiveData> for bool {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::Bool(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
         }
     }
+}
 
-    pub fn get_char_buffer(&self) -> Vec<u8> {
-        match self{
-            Self::String(x) => x.as_bytes().to_vec(),
-            _ => vec![]
+impl TryFrom<DigitalServoPrimitiveData> for i8 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::I8(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
         }
     }
+}
 
+impl TryFrom<DigitalServoPrimitiveData> for i16 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::I16(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for i32 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::I32(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for i64 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::I64(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for u8 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::U8(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for u16 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::U16(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for u32 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::U32(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for u64 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::U64(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for f32 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::F32(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
+}
+
+impl TryFrom<DigitalServoPrimitiveData> for f64 {
+    type Error = Box<dyn std::error::Error>;
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+        match val {
+            DigitalServoPrimitiveData::F64(data) => Ok(data),
+            _ => return Err("Type Not Match".into())
+        }
+    }
 }

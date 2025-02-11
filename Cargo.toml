@@ -3,10 +3,10 @@ name = "cands_presentation"
 license = "MIT"
 authors = ["DigitalServo"]
 description = "This is a presentation layer for DigitalServo USB CAN board."
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = {version = "1.0.210", features = ["derive"]}
+serde = {version = "1.0.217", features = ["derive"]}
