@@ -1,4 +1,10 @@
-use super::traits::{DigitalServoDataType, DigitalServoPrimitiveData, IntoDigitalServoDataType};
+mod traits;
+mod structs;
+
+use traits::IntoDigitalServoDataType;
+pub use structs::{DigitalServoPrimitiveData, DigitalServoDataType};
+
+pub trait DigitalServoDictionaryData: Clone + IntoDigitalServoDataType + Into<DigitalServoPrimitiveData> {}
 
 const KEYLEN_SIZE: usize = 1;
 const KEY_MAXLEN: usize = 32;
@@ -11,7 +17,7 @@ pub struct Dict {
 }
 
 impl Dict {
-    pub fn serialize<T: Clone + IntoDigitalServoDataType + Into<DigitalServoPrimitiveData>>(key: &str, value: &[T]) -> Vec<u8> {
+    pub fn serialize<T: DigitalServoDictionaryData>(key: &str, value: &[T]) -> Vec<u8> {
 
         /* Type code */
         let type_code_size: usize = 1;
@@ -48,9 +54,6 @@ impl Dict {
         /* Value */
         let value_buffer: Vec<u8> = unsafe {
             match data_type {
-                DigitalServoDataType::String => {
-                    value[0].clone().into().get_char_buffer()
-                },
                 DigitalServoDataType::Bool => {
                     let value: Vec<u8> = value
                         .iter()
@@ -68,6 +71,7 @@ impl Dict {
                         .collect();
                     std::slice::from_raw_parts(value.as_ptr() as *const u8, value_size).to_vec()
                 },
+                DigitalServoDataType::String => value[0].clone().into().get_char_buffer(),
                 _ => std::slice::from_raw_parts(value.as_ptr() as *const u8, value_size).to_vec()
             }
         };

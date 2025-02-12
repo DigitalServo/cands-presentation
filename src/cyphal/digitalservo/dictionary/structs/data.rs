@@ -38,7 +38,6 @@ impl DigitalServoPrimitiveData {
             _ => vec![]
         }
     }
-
 }
 
 
@@ -115,18 +114,9 @@ impl From<f64> for DigitalServoPrimitiveData {
 }
 
 
-
-
-
-
-
-
-
-
-
 impl TryFrom<DigitalServoPrimitiveData> for String {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::String(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -136,7 +126,7 @@ impl TryFrom<DigitalServoPrimitiveData> for String {
 
 impl TryFrom<DigitalServoPrimitiveData> for bool {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::Bool(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -146,7 +136,7 @@ impl TryFrom<DigitalServoPrimitiveData> for bool {
 
 impl TryFrom<DigitalServoPrimitiveData> for i8 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::I8(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -156,7 +146,7 @@ impl TryFrom<DigitalServoPrimitiveData> for i8 {
 
 impl TryFrom<DigitalServoPrimitiveData> for i16 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::I16(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -166,7 +156,7 @@ impl TryFrom<DigitalServoPrimitiveData> for i16 {
 
 impl TryFrom<DigitalServoPrimitiveData> for i32 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::I32(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -176,7 +166,7 @@ impl TryFrom<DigitalServoPrimitiveData> for i32 {
 
 impl TryFrom<DigitalServoPrimitiveData> for i64 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::I64(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -186,7 +176,7 @@ impl TryFrom<DigitalServoPrimitiveData> for i64 {
 
 impl TryFrom<DigitalServoPrimitiveData> for u8 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::U8(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -196,7 +186,7 @@ impl TryFrom<DigitalServoPrimitiveData> for u8 {
 
 impl TryFrom<DigitalServoPrimitiveData> for u16 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::U16(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -206,7 +196,7 @@ impl TryFrom<DigitalServoPrimitiveData> for u16 {
 
 impl TryFrom<DigitalServoPrimitiveData> for u32 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::U32(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -216,7 +206,7 @@ impl TryFrom<DigitalServoPrimitiveData> for u32 {
 
 impl TryFrom<DigitalServoPrimitiveData> for u64 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::U64(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -226,7 +216,7 @@ impl TryFrom<DigitalServoPrimitiveData> for u64 {
 
 impl TryFrom<DigitalServoPrimitiveData> for f32 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::F32(data) => Ok(data),
             _ => return Err("Type Not Match".into())
@@ -236,7 +226,7 @@ impl TryFrom<DigitalServoPrimitiveData> for f32 {
 
 impl TryFrom<DigitalServoPrimitiveData> for f64 {
     type Error = Box<dyn std::error::Error>;
-    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, Self::Error> {
+    fn try_from(val: DigitalServoPrimitiveData) -> Result<Self, <Self as TryFrom<DigitalServoPrimitiveData>>::Error> {
         match val {
             DigitalServoPrimitiveData::F64(data) => Ok(data),
             _ => return Err("Type Not Match".into())
