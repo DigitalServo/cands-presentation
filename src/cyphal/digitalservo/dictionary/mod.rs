@@ -1,10 +1,8 @@
 mod traits;
 mod structs;
 
-use traits::IntoDigitalServoDataType;
+pub use traits::IntoDigitalServoDataType;
 pub use structs::{DigitalServoPrimitiveData, DigitalServoDataType};
-
-pub trait DigitalServoDictionaryData: Clone + IntoDigitalServoDataType + Into<DigitalServoPrimitiveData> {}
 
 const KEYLEN_SIZE: usize = 1;
 const KEY_MAXLEN: usize = 32;
@@ -17,7 +15,10 @@ pub struct Dict {
 }
 
 impl Dict {
-    pub fn serialize<T: DigitalServoDictionaryData>(key: &str, value: &[T]) -> Vec<u8> {
+    pub fn serialize<T>(key: &str, value: &[T]) -> Vec<u8>
+    where
+        T: Clone + IntoDigitalServoDataType + Into<DigitalServoPrimitiveData>
+    {
 
         /* Type code */
         let type_code_size: usize = 1;
